@@ -1,20 +1,19 @@
-import Header from "./Header"
-import Topics from "./Topics"
-import Articles from "./Articles"
-import {useState} from 'react'
+import Header from "./Header";
+import Topics from "./Topics";
+import Articles from "./Articles";
+import { useState } from "react";
 
 const Homepage = (props) => {
-    const {user} = props
-    const [topic, setTopic] = useState();
+  const { user } = props;
+  const [topic, setTopic] = useState();
 
-    return (
-        <main className="homepage-grid">
-            <Header user={user} />
-            <Topics setTopic={setTopic} topic={topic} />
-            <Articles topic={topic} />
+  return (
+    <main className="homepage-grid">
+      <Header user={user} />
+      <Topics setTopic={setTopic} topic={topic} />
+      <Articles topic={topic} />
+    </main>
+  );
+};
 
-        </main>
-    )
-}
-
-export default Homepage
+export default Homepage;

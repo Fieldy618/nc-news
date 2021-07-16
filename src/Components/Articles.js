@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 const Articles = (props) => {
   const [data, setData] = useState();
@@ -6,8 +7,8 @@ const Articles = (props) => {
   const { topic } = props;
 
   useEffect(() => {
-    let url = `https://kvwn-news.herokuapp.com/api/articles?limit=10&p=${page}`;
-    if (topic) url += `&topics=${topic}`;
+    let url = `https://kvwn-news.herokuapp.com/api/articles?limit=3&p=${page}`;
+    if (topic) url += `&topic=${topic}`;
     fetch(url)
       .then((response) => {
         return response.json();
@@ -16,6 +17,12 @@ const Articles = (props) => {
         setData(data);
       });
   }, [page, topic]);
+
+  const history = useHistory();
+
+  const handleRoute = () => {
+    history.push(`/Single-article`);
+  };
 
   useEffect(() => {
     setPage(1);
@@ -36,8 +43,9 @@ const Articles = (props) => {
             return (
               <div key={article.article_id} className="article-container">
                 <h2>{article.title}</h2>
+                <h2>{article.topic}</h2>
                 <h2>{article.author}</h2>
-                <h2>{article.votes}</h2>
+                <button onClick={handleRoute}>Link</button>
               </div>
             );
           })}
